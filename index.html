@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>I'm Sorry ❤️</title>
+  <style>
+    body {
+      background-image: url('https://i.postimg.cc/852dJktP/Snapchat-1240232260.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 36px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+    p {
+      font-size: 18px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    button {
+      background-color: rgba(255, 0, 100, 0.85);
+      border: none;
+      padding: 14px 28px;
+      font-size: 18px;
+      color: white;
+      border-radius: 10px;
+      margin-top: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 2;
+    }
+    button:hover {
+      background-color: rgba(255, 0, 100, 1);
+    }
+    #responseText {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 20px;
+      color: #fff;
+    }
+    .bottom-image {
+      margin-top: 40px;
+      width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: float 2s ease-out forwards;
+      color: red;
+      pointer-events: none;
+      z-index: 1;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-150px) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>I'm Sorry ❤️</h1>
+  <p>I hurt you and I regret it deeply. Please forgive me.</p>
+  <button id="forgiveBtn" onclick="playMusicAndChangeText()">Click if you forgive me</button>
+  <p id="responseText"></p>
+
+  <img class="bottom-image" src="https://i.postimg.cc/852dJktP/Snapchat-1240232260.jpg" alt="Apology Image" />
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    function playMusicAndChangeText() {
+      document.getElementById("responseText").innerText = "Thank you for forgiving me ❤️";
+      const music = document.getElementById("bgMusic");
+      music.play();
+      createHearts();
+
+      // Redirect to second page after 3 seconds
+      setTimeout(() => {
+        window.location.href = "thankyou.html";
+      }, 3000);
+    }
+
+    function createHearts() {
+      const btn = document.getElementById("forgiveBtn");
+      const rect = btn.getBoundingClientRect();
+      const startX = rect.left + rect.width / 2;
+      const startY = rect.top + rect.height / 2;
+
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerText = "❤️";
+        heart.style.left = `${startX + (Math.random() * 40 - 20)}px`;
+        heart.style.top = `${startY + (Math.random() * 20 - 10)}px`;
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 2000);
+      }
+    }
+  </script>
+</body>
+</html>
